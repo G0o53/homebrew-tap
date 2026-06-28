@@ -6,18 +6,18 @@ class Yom < Formula
   license "MIT"
 
   def install
-    cargo_path = which("cargo") || 
-                 File.exist?("#{ENV["HOME"]}/.cargo/bin/cargo") ? "#{ENV["HOME"]}/.cargo/bin/cargo" : nil
+    user_home = ENV["HOME"] || File.expand_path("~")
+    rustup_bin = "#{user_home}/.cargo/bin"
 
-    if cargo_path.nil?
+    ENV.prepend_path "PATH", rustup_bin
+
+    if which("cargo").nil?
       odie <<~EOS
-        Error: Rust is required to compile yom from source. 
+        Rust is required to compile yom from source. 
         Please install any version of Rust (we highly recommend rustup: https://rustup.rs) 
         and try installing yom again.
       EOS
     end
-
-    ENV.prepend_path "PATH", "#{ENV["HOME"]}/.cargo/bin"
 
     system "make", "homebrew", "PREFIX=#{prefix}"
   end
