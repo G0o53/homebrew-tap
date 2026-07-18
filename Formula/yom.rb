@@ -1,7 +1,7 @@
 class Yom < Formula
   desc "lightweight, non-interactive micro-shell and systems glue"
   homepage "https://github.com/G0o53/yom"
-  url "https://github.com/G0o53/yom.git", tag: "v2.0.2"
+  url "https://github.com/G0o53/yom.git", tag: "v2.2.6"
   head "https://github.com/G0o53/yom.git", branch: "master"
   license "MIT"
 
